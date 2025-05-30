@@ -1,0 +1,29 @@
+﻿@page
+@model SistemaAcademico.Pages.EditCarreraModel
+@{
+}
+
+<form method="post">
+	
+	<input type="hidden" asp-for="oCarrera.Id">
+
+	<div class="form-group">
+		<label asp-for="oCarrera.Nombre"></label>
+		<input asp-for="oCarrera.Nombre" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="oCarrera.DuracionAnios"></label>
+		<input asp-for="oCarrera.DuracionAnios" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="oCarrera.TituloOtorgado"></label>
+		<input asp-for="oCarrera.TituloOtorgado" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="oCarrera.Modalidad"></label>
+		<input asp-for="oCarrera.Modalidad" class="form-control" />
+	</div>
+
+	<button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+</form>
