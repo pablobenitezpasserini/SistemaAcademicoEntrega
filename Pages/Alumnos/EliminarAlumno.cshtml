@@ -1,0 +1,31 @@
+﻿@page
+@model SistemaAcademico.Pages.Alumnos.EliminarAlumnoModel
+@{
+}
+<input type="hidden" asp-for="oAlumno.Id">
+
+<form method="post">
+
+	<h4>¿Estás seguro de que queres eliminar este alumno?</h4>
+
+	<div>
+		<strong>Nombre: </strong> @Model.oAlumno.Nombre
+	</div>
+	<div>
+		<strong>Apellido: </strong> @Model.oAlumno.Apellido
+	</div>
+	<div>
+		<strong>DNI: </strong> @Model.oAlumno.Dni
+	</div>
+	<div>
+		<strong>Email: </strong> @Model.oAlumno.Email
+	</div>
+	<div>
+		<strong>Fecha de nacimiento: </strong> @Model.oAlumno.FechaNacimiento
+	</div>
+
+	<br />
+
+	<button type="submit" class="btn btn-danger">Eliminar</button>
+	<a asp-page="TablaAlumnos" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -11,7 +11,7 @@ namespace SistemaAcademico.Pages.Carreras
 		public List<Carrera> ListaMostrarCarrera;
 		public void OnGet()
 		{
-			ListaMostrarCarrera = DatosCompartidos.ListCarrera;
+			ListaMostrarCarrera = DatosCompartidos.ListCarreras;
 		}
 
 	}

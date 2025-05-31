@@ -11,7 +11,7 @@ namespace SistemaAcademico.Pages.Carreras
 		public Carrera oCarrera { get; set; }
 		public void OnGet(int id)
 		{
-			foreach (var carrera in DatosCompartidos.ListCarrera)
+			foreach (var carrera in DatosCompartidos.ListCarreras)
 			{
 				if (carrera.Id == id)
 				{
@@ -27,7 +27,7 @@ namespace SistemaAcademico.Pages.Carreras
 				return Page();
 			}
 
-			foreach (var carrera in DatosCompartidos.ListCarrera)
+			foreach (var carrera in DatosCompartidos.ListCarreras)
 			{
 				if (carrera.Id == oCarrera.Id)
 				{

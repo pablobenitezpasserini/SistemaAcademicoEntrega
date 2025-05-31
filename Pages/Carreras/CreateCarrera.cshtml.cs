@@ -12,8 +12,6 @@ namespace SistemaAcademico.Pages.Carreras
 		public Carrera oCarrera { get; set; }
 		public void OnGet() { }
 
-		public static int ultimoId = 0;
-
 		public IActionResult OnPost()
 		{
 
@@ -23,7 +21,7 @@ namespace SistemaAcademico.Pages.Carreras
 			}
 
 			oCarrera.Id = DatosCompartidos.ObtenerNuevoCarreraId();
-			DatosCompartidos.ListCarrera.Add(oCarrera);
+			DatosCompartidos.ListCarreras.Add(oCarrera);
 			return RedirectToPage("TablaCarreras");
 		}
 	}

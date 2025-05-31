@@ -11,7 +11,7 @@ namespace SistemaAcademico.Pages.Carreras
 		public Carrera oCarrera { get; set; }
 		public void OnGet(int id)
 		{
-			foreach (var carrera in DatosCompartidos.ListCarrera)
+			foreach (var carrera in DatosCompartidos.ListCarreras)
 			{
 				if (carrera.Id == id)
 				{
@@ -26,7 +26,7 @@ namespace SistemaAcademico.Pages.Carreras
 		{
 			Carrera eliminarCarrera = null;
 
-			foreach (var carrera in DatosCompartidos.ListCarrera)
+			foreach (var carrera in DatosCompartidos.ListCarreras)
 			{
 				if (carrera.Id == oCarrera.Id)
 				{
@@ -37,7 +37,7 @@ namespace SistemaAcademico.Pages.Carreras
 
 			if (eliminarCarrera != null)
 			{
-				DatosCompartidos.ListCarrera.Remove(eliminarCarrera);
+				DatosCompartidos.ListCarreras.Remove(eliminarCarrera);
 			}
 
 			return RedirectToPage("TablaCarreras");

@@ -4,8 +4,8 @@ namespace SistemaAcademico.Data
 {
     public static class DatosCompartidos
     {
-        public static List<Carrera> ListCarrera = new List<Carrera>();
-        public static List<Alumno> ListaAlumno = new List<Alumno>();
+        public static List<Carrera> ListCarreras = new List<Carrera>();
+        public static List<Alumno> ListaAlumnos = new List<Alumno>();
 
         private static int _ultimoCarreaId = 0;
 		private static int _ultimoAlumnoId = 0;
