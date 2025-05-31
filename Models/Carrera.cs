@@ -9,6 +9,7 @@ namespace SistemaAcademico.Models
 		public string? Nombre { get; set; }
 		[Display(Name = "Duración en años")]
 		[Required(ErrorMessage = "La duracion no puede estar vacia")]
+		[Range(1, 10, ErrorMessage = "La duracion debe ser entre 1 y 10 años")]
 		public int? DuracionAnios { get; set; }
 		[Display(Name = "Titulo otorgado")]
 		[Required(ErrorMessage = "El titulo no puede estar vacio")]
