@@ -22,7 +22,7 @@ namespace SistemaAcademico.Pages.Carreras
 				return Page();
 			}
 
-			oCarrera.Id = DatosCompartidos.ObtenerNuevoId();
+			oCarrera.Id = DatosCompartidos.ObtenerNuevoCarreraId();
 			DatosCompartidos.ListCarrera.Add(oCarrera);
 			return RedirectToPage("TablaCarreras");
 		}
