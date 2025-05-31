@@ -22,6 +22,15 @@ namespace SistemaAcademico.Pages.Alumnos
 		}
 		public IActionResult OnPost()
 		{
+			if (DatosCompartidos.ListaAlumnos.Any(alumno => alumno.Email == oAlumno.Email && alumno.Id != oAlumno.Id))
+			{
+				ModelState.AddModelError("oAlumno.Email", "El correo electrónico ya está registrado.");
+			}
+
+			if (DatosCompartidos.ListaAlumnos.Any(alumno => alumno.Dni == oAlumno.Dni && alumno.Id != oAlumno.Id))
+			{
+				ModelState.AddModelError("oAlumno.Dni", "El DNI ya está registrado.");
+			}
 			if (!ModelState.IsValid)
 			{
 				return Page();
