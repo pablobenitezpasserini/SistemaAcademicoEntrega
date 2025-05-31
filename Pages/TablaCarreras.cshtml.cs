@@ -5,6 +5,7 @@ using SistemaAcademico.Models;
 
 namespace SistemaAcademico.Pages
 {
+    // aguanten las facturas
     public class TablaCarrerasModel : PageModel
     {
         public List<Carrera> ListaMostrarCarrera;
