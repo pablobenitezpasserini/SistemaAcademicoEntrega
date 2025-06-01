@@ -22,6 +22,6 @@ namespace SistemaAcademico.Models
 
 		[Required(ErrorMessage = "La fecha de nacimiento no puede estar vacia")]
 		[Display(Name = "Fecha de nacimiento")]
-		public DateOnly FechaNacimiento { get; set; }
+		public DateOnly? FechaNacimiento { get; set; }
 	}
 }
