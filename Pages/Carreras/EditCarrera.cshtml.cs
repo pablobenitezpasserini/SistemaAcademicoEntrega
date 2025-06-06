@@ -1,16 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SistemaAcademico.Data;
+using SistemaAcademico.Helpers;
 using SistemaAcademico.Models;
 
 namespace SistemaAcademico.Pages.Carreras
 {
 	public class EditCarreraModel : PageModel
 	{
+		public List<string> Modalidades = new List<string>();
 		[BindProperty]
 		public Carrera oCarrera { get; set; }
 		public void OnGet(int id)
 		{
+			Modalidades = OpcionesModalidad.lista;
+
 			foreach (var carrera in DatosCompartidos.ListCarreras)
 			{
 				if (carrera.Id == id)
@@ -22,7 +26,9 @@ namespace SistemaAcademico.Pages.Carreras
 		}
 		public IActionResult OnPost()
 		{
-			if (!ModelState.IsValid)
+            Modalidades = OpcionesModalidad.lista;
+
+            if (!ModelState.IsValid)
 			{
 				return Page();
 			}
