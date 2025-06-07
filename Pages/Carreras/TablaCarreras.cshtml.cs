@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SistemaAcademico.Data;
 using SistemaAcademico.Models;
+using SistemaAcademico.Services;
 
 namespace SistemaAcademico.Pages.Carreras
 {
@@ -11,7 +12,7 @@ namespace SistemaAcademico.Pages.Carreras
 		public List<Carrera> ListaMostrarCarrera;
 		public void OnGet()
 		{
-			ListaMostrarCarrera = DatosCompartidos.ListCarreras;
+			ListaMostrarCarrera = ServicioCarrera.ObtenerCarreras();
 		}
 
 	}
