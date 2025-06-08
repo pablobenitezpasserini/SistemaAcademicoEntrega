@@ -32,22 +32,27 @@ namespace SistemaAcademico.Services
         {
             var carreras = ObtenerCarreras();
 
-            nuevaCarrera.Id = ObtenerNuevoId();
+            nuevaCarrera.Id = ObtenerNuevoId(carreras);
 
             carreras.Add(nuevaCarrera);
 
-            //GuardarCarreras(carreras);
+            GuardarCarreras(carreras);
         }
 
-        private static int ObtenerNuevoId()
+		public static void GuardarCarreras(List<Carrera> carreras)
+		{
+			string json = JsonSerializer.Serialize(carreras);
+
+            File.WriteAllText(path, json);
+		}
+
+		private static int ObtenerNuevoId(List<Carrera> listaCarreras)
         {
             int lastId = 0;
             
-            var listaCarreras = ObtenerCarreras();
-            
-            foreach(var carrera in listaCarreras) 
+            foreach (var carrera in listaCarreras) 
             {
-                if(carrera.Id >= lastId)
+                if(carrera.Id > lastId)
                 {
                     lastId = carrera.Id;
                 }

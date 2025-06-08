@@ -30,8 +30,6 @@ namespace SistemaAcademico.Pages.Carreras
 
 
 			ServicioCarrera.AgregarCarrera(oCarrera);
-			/*oCarrera.Id = DatosCompartidos.ObtenerNuevoCarreraId();
-			DatosCompartidos.ListCarreras.Add(oCarrera);*/
 
 			return RedirectToPage("TablaCarreras");
 		}
