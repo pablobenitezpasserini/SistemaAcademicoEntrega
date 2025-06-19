@@ -46,6 +46,39 @@ namespace SistemaAcademico.Services
             File.WriteAllText(path, json);
 		}
 
+        public static void EliminarPorId(int id) 
+        {
+            var lista = ObtenerCarreras();
+            Carrera? carreraAEliminar = null;
+
+            foreach (var carrera in lista)
+            {
+                if(carrera.Id == id)
+                {
+                    carreraAEliminar = carrera;
+                    break;
+                }
+            }
+
+            if (carreraAEliminar != null) 
+            {
+                lista.Remove(carreraAEliminar);
+                GuardarCarreras(lista);
+            }
+        }
+        public static Carrera? BuscarPorId(int id)
+        {
+            var lista = ObtenerCarreras();
+
+            foreach (var carrera in lista) 
+            {
+                if (carrera.Id == id) 
+                {
+                    return carrera;
+                }
+            }
+            return null;
+        }
 		private static int ObtenerNuevoId(List<Carrera> listaCarreras)
         {
             int lastId = 0;

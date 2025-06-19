@@ -32,7 +32,7 @@ namespace SistemaAcademico.Pages.Carreras
 			{
 				return Page();
 			}
-
+			
 			foreach (var carrera in DatosCompartidos.ListCarreras)
 			{
 				if (carrera.Id == oCarrera.Id)
