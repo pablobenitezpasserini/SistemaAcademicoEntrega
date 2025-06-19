@@ -66,6 +66,25 @@ namespace SistemaAcademico.Services
                 GuardarCarreras(lista);
             }
         }
+
+        public static void EditarCarrera(Carrera carreraEditada)
+        {
+            var lista = ObtenerCarreras();
+
+            foreach (var carrera in lista) 
+            { 
+                if(carrera.Id == carreraEditada.Id) 
+                {
+                    carrera.Nombre = carreraEditada.Nombre;
+                    carrera.Modalidad = carreraEditada.Modalidad;
+                    carrera.DuracionAnios = carreraEditada.DuracionAnios;
+                    carrera.TituloOtorgado = carreraEditada.TituloOtorgado;
+                    break;
+                }
+            }
+
+            GuardarCarreras(lista);
+        }
         public static Carrera? BuscarPorId(int id)
         {
             var lista = ObtenerCarreras();
