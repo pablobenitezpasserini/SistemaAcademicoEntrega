@@ -49,16 +49,7 @@ namespace SistemaAcademico.Services
         public static void EliminarPorId(int id) 
         {
             var lista = ObtenerCarreras();
-            Carrera? carreraAEliminar = null;
-
-            foreach (var carrera in lista)
-            {
-                if(carrera.Id == id)
-                {
-                    carreraAEliminar = carrera;
-                    break;
-                }
-            }
+            Carrera? carreraAEliminar = BuscarCarreraPorId(lista, id);
 
             if (carreraAEliminar != null) 
             {
@@ -70,25 +61,26 @@ namespace SistemaAcademico.Services
         public static void EditarCarrera(Carrera carreraEditada)
         {
             var lista = ObtenerCarreras();
-
-            foreach (var carrera in lista) 
-            { 
-                if(carrera.Id == carreraEditada.Id) 
-                {
-                    carrera.Nombre = carreraEditada.Nombre;
-                    carrera.Modalidad = carreraEditada.Modalidad;
-                    carrera.DuracionAnios = carreraEditada.DuracionAnios;
-                    carrera.TituloOtorgado = carreraEditada.TituloOtorgado;
-                    break;
-                }
-            }
-
-            GuardarCarreras(lista);
+            var carrera = BuscarCarreraPorId(lista, carreraEditada.Id);
+             
+            if(carrera != null) 
+            {
+                carrera.Nombre = carreraEditada.Nombre;
+                carrera.Modalidad = carreraEditada.Modalidad;
+                carrera.DuracionAnios = carreraEditada.DuracionAnios;
+                carrera.TituloOtorgado = carreraEditada.TituloOtorgado;
+				GuardarCarreras(lista);
+			}
+            
         }
         public static Carrera? BuscarPorId(int id)
         {
             var lista = ObtenerCarreras();
 
+            return BuscarCarreraPorId(lista, id);
+        }
+        private static Carrera? BuscarCarreraPorId(List<Carrera> lista, int id) 
+        {
             foreach (var carrera in lista) 
             {
                 if (carrera.Id == id) 
