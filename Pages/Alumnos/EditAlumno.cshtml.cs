@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SistemaAcademico.Data;
 using SistemaAcademico.Models;
+using SistemaAcademico.Services;
 
 namespace SistemaAcademico.Pages.Alumnos
 {
@@ -11,44 +12,22 @@ namespace SistemaAcademico.Pages.Alumnos
 		public Alumno oAlumno { get; set; }
 		public void OnGet(int id)
 		{
-			foreach (var alumno in DatosCompartidos.ListaAlumnos)
+			Alumno? alumno = ServicioAlumno.BuscarPorId(id);
+
+			if(alumno != null) 
 			{
-				if (alumno.Id == id)
-				{
-					oAlumno = alumno;
-					break;
-				}
+				oAlumno = alumno;
 			}
 		}
 		public IActionResult OnPost()
 		{
-			if (DatosCompartidos.ListaAlumnos.Any(alumno => alumno.Email == oAlumno.Email && alumno.Id != oAlumno.Id))
-			{
-				ModelState.AddModelError("oAlumno.Email", "El correo electrónico ya está registrado.");
-			}
-
-			if (DatosCompartidos.ListaAlumnos.Any(alumno => alumno.Dni == oAlumno.Dni && alumno.Id != oAlumno.Id))
-			{
-				ModelState.AddModelError("oAlumno.Dni", "El DNI ya está registrado.");
-			}
 			if (!ModelState.IsValid)
 			{
 				return Page();
 			}
 
-			foreach (var alumno in DatosCompartidos.ListaAlumnos)
-			{
-				if (alumno.Id == oAlumno.Id)
-				{
-					alumno.Nombre = oAlumno.Nombre;
-					alumno.Apellido = oAlumno.Apellido;
-					alumno.Dni = oAlumno.Dni;
-					alumno.Email = oAlumno.Email;
-					alumno.FechaNacimiento = oAlumno.FechaNacimiento;
-					break;
-
-				}
-			}
+			ServicioAlumno.EditarAlumno(oAlumno);
+			
 			return RedirectToPage("TablaAlumnos");
 		}
 	}
