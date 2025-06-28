@@ -9,9 +9,14 @@ namespace SistemaAcademico.Pages.Alumnos
     public class TablaAlumnosModel : PageModel
     {
 		public List<Alumno> listaAlumnosMotrar;
+		private readonly ServicioAlumno oServicioAlumno;
+		public TablaAlumnosModel()
+		{
+			oServicioAlumno = new ServicioAlumno();
+		}
 		public void OnGet()
 		{
-			listaAlumnosMotrar = ServicioAlumno.ObtenerAlumnos();
+			listaAlumnosMotrar = oServicioAlumno.ObtenerTodos();
 		}
 	}
 }

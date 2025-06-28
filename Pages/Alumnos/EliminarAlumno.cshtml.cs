@@ -10,9 +10,15 @@ namespace SistemaAcademico.Pages.Alumnos
     {
 		[BindProperty]
 		public Alumno oAlumno { get; set; }
+		private readonly ServicioAlumno oServicioAlumno;
+		public EliminarAlumnoModel()
+		{
+			oServicioAlumno = new ServicioAlumno();
+		}
+
 		public IActionResult OnGet(int id)
 		{
-			var alumno = ServicioAlumno.BuscarPorId(id);
+			var alumno = oServicioAlumno.BuscarPorId(id);
 			if (alumno == null)
 			{
 				return RedirectToPage("Index");
@@ -24,7 +30,7 @@ namespace SistemaAcademico.Pages.Alumnos
 
 		public IActionResult OnPost()
 		{
-			ServicioAlumno.EliminarPorId(oAlumno.Id);
+			oServicioAlumno.EliminarPorId(oAlumno.Id);
 
 			return RedirectToPage("TablaAlumnos");
 		}

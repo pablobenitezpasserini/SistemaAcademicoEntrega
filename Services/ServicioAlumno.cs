@@ -6,107 +6,30 @@ namespace SistemaAcademico.Services
 {
 	public class ServicioAlumno
 	{
-		private static string path = "Data/Alumnos.json";
-
-		public static string LeerTextoDelArchivo()
+		private readonly RepositorioCrudJson<Alumno> crud;
+		public ServicioAlumno()
 		{
-			if (File.Exists(path))
-			{
-				return File.ReadAllText(path);
-			}
-			else
-			{
-				return "[]";
-			}
+			crud = new RepositorioCrudJson<Alumno>("Alumnos");
 		}
-
-		public static List<Alumno> ObtenerAlumnos()
+		public List<Alumno> ObtenerTodos()
 		{
-			string json = LeerTextoDelArchivo();
-
-			var lista = JsonSerializer.Deserialize<List<Alumno>>(json);
-
-			return lista ?? new List<Alumno>();
+			return crud.ObtenerTodos();
 		}
-
-		public static void AgregarAlumno(Alumno nuevoAlumno)
+		public Alumno? BuscarPorId(int id)
 		{
-			var alumnos = ObtenerAlumnos();
-
-			nuevoAlumno.Id = ObtenerNuevoId(alumnos);
-
-			alumnos.Add(nuevoAlumno);
-
-			GuardarAlumnos(alumnos);
+			return crud.BuscarPorId(id);
 		}
-
-		public static void GuardarAlumnos(List<Alumno> alumnos)
+		public void Editar(Alumno alumno)
 		{
-			string json = JsonSerializer.Serialize(alumnos);
-
-			File.WriteAllText(path, json);
+			crud.Editar(alumno);
 		}
-
-		public static void EliminarPorId(int id)
+		public void EliminarPorId(int id)
 		{
-			var lista = ObtenerAlumnos();
-			Alumno? alumnoAEliminar = BuscarAlumnoPorId(lista, id);
-
-			if (alumnoAEliminar != null)
-			{
-				lista.Remove(alumnoAEliminar);
-				GuardarAlumnos(lista);
-			}
+			crud.EliminarPorId(id);
 		}
-
-		public static void EditarAlumno(Alumno alumnoEditado)
+		public void Agregar(Alumno alumno)
 		{
-			var lista = ObtenerAlumnos();
-			var alumno = BuscarAlumnoPorId(lista, alumnoEditado.Id);
-
-			if (alumno != null)
-			{
-				alumno.Nombre = alumnoEditado.Nombre;
-				alumno.Apellido = alumnoEditado.Apellido;
-				alumno.Dni = alumnoEditado.Dni;
-				alumno.Email = alumnoEditado.Email;
-				alumno.FechaNacimiento = alumnoEditado.FechaNacimiento;
-				GuardarAlumnos(lista);
-			}
-
-		}
-		public static Alumno? BuscarPorId(int id)
-		{
-			var lista = ObtenerAlumnos();
-
-			return BuscarAlumnoPorId(lista, id);
-		}
-		private static Alumno? BuscarAlumnoPorId(List<Alumno> lista, int id)
-		{
-			foreach (var alumno in lista)
-			{
-				if (alumno.Id == id)
-				{
-					return alumno;
-				}
-			}
-			return null;
-		}
-		private static int ObtenerNuevoId(List<Alumno> listaAlumnos)
-		{
-			int lastId = 0;
-
-			foreach (var alumno in listaAlumnos)
-			{
-				if (alumno.Id > lastId)
-				{
-					lastId = alumno.Id;
-				}
-			}
-
-			lastId++;
-
-			return lastId;
+			crud.Agregar(alumno);
 		}
 	}
 }
