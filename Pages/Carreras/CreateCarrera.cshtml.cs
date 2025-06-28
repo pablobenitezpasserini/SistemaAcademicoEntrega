@@ -10,10 +10,15 @@ namespace SistemaAcademico.Pages.Carreras
 {
 	public class CreateCarreraModel : PageModel
 	{
-		public List<string> Modalidades {  get; set; } = new List<string>();
-
 		[BindProperty]
 		public Carrera oCarrera { get; set; }
+		public List<string> Modalidades {  get; set; } = new List<string>();
+		private readonly ServicioCarrera oServicioCarrera;
+
+		public CreateCarreraModel()
+		{
+			oServicioCarrera = new ServicioCarrera();
+		}
 		public void OnGet() 
 		{
 			Modalidades = OpcionesModalidad.lista;
@@ -28,8 +33,7 @@ namespace SistemaAcademico.Pages.Carreras
 				return Page();
 			}
 
-
-			ServicioCarrera.AgregarCarrera(oCarrera);
+			oServicioCarrera.Agregar(oCarrera);
 
 			return RedirectToPage("TablaCarreras");
 		}

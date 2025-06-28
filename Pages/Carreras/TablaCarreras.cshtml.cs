@@ -10,9 +10,14 @@ namespace SistemaAcademico.Pages.Carreras
 	public class TablaCarrerasModel : PageModel
 	{
 		public List<Carrera> ListaMostrarCarrera;
+		private readonly ServicioCarrera oServicioCarrera;
+		public TablaCarrerasModel()
+		{
+			oServicioCarrera = new ServicioCarrera();
+		}
 		public void OnGet()
 		{
-			ListaMostrarCarrera = ServicioCarrera.ObtenerCarreras();
+			ListaMostrarCarrera = oServicioCarrera.ObtenerTodos();
 		}
 
 	}

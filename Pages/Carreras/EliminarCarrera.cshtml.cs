@@ -10,9 +10,16 @@ namespace SistemaAcademico.Pages.Carreras
 	{
 		[BindProperty]
 		public Carrera oCarrera { get; set; }
+		private readonly ServicioCarrera oServicioCarrera;
+
+		public EliminarCarreraModel()
+		{
+			oServicioCarrera = new ServicioCarrera();
+		}
 		public IActionResult OnGet(int id)
 		{
-			var carrera = ServicioCarrera.BuscarPorId(id);
+			var carrera = oServicioCarrera.BuscarPorId(id);
+
 			if (carrera == null) 
 			{
 				return RedirectToPage("Index");
@@ -24,7 +31,8 @@ namespace SistemaAcademico.Pages.Carreras
 
 		public IActionResult OnPost()
 		{
-			ServicioCarrera.EliminarPorId(oCarrera.Id);
+			oServicioCarrera.EliminarPorId(oCarrera.Id);
+
 			return RedirectToPage("TablaCarreras");
 		}
 	}
