@@ -1,5 +1,4 @@
 ﻿using SistemaAcademico.Models;
-using System.Text.Json;
 
 namespace SistemaAcademico.Services
 {

@@ -1,33 +1,22 @@
-﻿using System.Text.Json;
+﻿using SistemaAcademico.AccesoDatos;
+using System.Text.Json;
 
 namespace SistemaAcademico.Services
 {
 	public class RepositorioCrudJson<T> where T : class
 	{
-		private string ruta;
-
-		public RepositorioCrudJson(string nombreArchivo)
+		private readonly IAccesoDatos<T> _accesoDatos;
+        public RepositorioCrudJson(IAccesoDatos<T> acceso)
+        {
+            _accesoDatos = acceso;
+        }
+        public List<T> ObtenerTodos()
 		{
-			ruta = $"Data/{nombreArchivo}.json";
-		}
-		public string LeerTextoDelArchivo()
-		{
-			if (File.Exists(ruta))
-			{
-				return File.ReadAllText(ruta);
-			}
-			return "[]";
-		}
-		public List<T> ObtenerTodos()
-		{
-			string json = LeerTextoDelArchivo();
-			var lista = JsonSerializer.Deserialize<List<T>>(json);
-			return lista ?? new List<T>();
+			return _accesoDatos.Leer();
 		}
 		public void Guardar(List<T> lista)
 		{
-			string textoJson = JsonSerializer.Serialize(lista);
-			File.WriteAllText(ruta, textoJson);
+			_accesoDatos.Guardar(lista);
 		}
 		public int ObtenerNuevoId(List<T> lista)
 		{
