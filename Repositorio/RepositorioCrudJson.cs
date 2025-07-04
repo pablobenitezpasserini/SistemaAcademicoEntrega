@@ -1,9 +1,9 @@
 ﻿using SistemaAcademico.AccesoDatos;
 using System.Text.Json;
 
-namespace SistemaAcademico.Services
+namespace SistemaAcademico.Repositorio
 {
-	public class RepositorioCrudJson<T> where T : class
+	public class RepositorioCrudJson<T> : IRepository<T> where T : class
 	{
 		private readonly IAccesoDatos<T> _accesoDatos;
         public RepositorioCrudJson(IAccesoDatos<T> acceso)

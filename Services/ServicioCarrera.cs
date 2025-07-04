@@ -1,33 +1,34 @@
 ﻿using SistemaAcademico.Models;
+using SistemaAcademico.Repositorio;
 
 namespace SistemaAcademico.Services
 {
     public class ServicioCarrera
     {
-		private readonly RepositorioCrudJson<Carrera> crud;
-		public ServicioCarrera()
+		private readonly IRepository<Carrera> _repo;
+		public ServicioCarrera(IRepository<Carrera> repo)
 		{
-			crud = new RepositorioCrudJson<Carrera>("Carreras");
+			_repo = repo;
 		}
 		public List<Carrera> ObtenerTodos()
 		{
-			return crud.ObtenerTodos();
+			return _repo.ObtenerTodos();
 		}
 		public Carrera? BuscarPorId(int id)
 		{
-			return crud.BuscarPorId(id);
+			return _repo.BuscarPorId(id);
 		}
 		public void Editar(Carrera carrera)
 		{
-			crud.Editar(carrera);
+			_repo.Editar(carrera);
 		}
 		public void EliminarPorId(int id)
 		{
-			crud.EliminarPorId(id);
+			_repo.EliminarPorId(id);
 		}
 		public void Agregar(Carrera carrera)
 		{
-			crud.Agregar(carrera);
+			_repo.Agregar(carrera);
 		}
 	}
 }
